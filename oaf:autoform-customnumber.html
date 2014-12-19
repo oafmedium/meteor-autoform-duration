@@ -1,0 +1,14 @@
+<template name="OafCustomNumber">
+  <div class="{{this.name}} customnumber">
+    <div class="side increment">
+      <span class="text">+</span>
+    </div>
+    <label>
+      <input name="{{this.name}}" type="number" value="{{this.value}}" min="{{this.min}}" max="{{this.max}}" step="{{this.step}}" class="customnumber-input"/>
+      {{this.label}}
+    </label>
+    <div class="side decrement">
+      <span class="text">-</span>
+    </div>
+  </div>
+</template>

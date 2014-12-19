@@ -1,0 +1,7 @@
+<template name="OafDuration">
+  <div class="oafDuration">
+    <input type="hidden" {{this.atts}} />
+    {{> OafCustomNumber name="oafHours" min="0" step="1" label="Hours" value=this.value.hours}}
+    {{> OafCustomNumber name="oafMinutes" step="5" label="Minutes" value=this.value.minutes}}
+  </div>
+</template>
