@@ -11,7 +11,7 @@ Package.onUse(function(api) {
     'coffeescript',
     'templating',
     'blaze',
-    'aldeed:autoform',
+    'aldeed:autoform@4.2.1',
   ], ['client']);
   api.addFiles([
     'oaf:autoform-customnumber.html',
