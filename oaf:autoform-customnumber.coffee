@@ -1,42 +1,6 @@
-###AutoForm.addInputType 'oaf-customnumber',
-  template: 'OafCustomNumber'
-  valueOut: ->
-    AutoForm.Utility.stringToNumber this.find('.customnumber-input').val()
-  valueConverters:
-    string: (val) ->
-      return val.toString()  if typeof val is "number"
-      val
-
-    stringArray: (val) ->
-      return [val.toString()]  if typeof val is "number"
-      val
-
-    numberArray: (val) ->
-      return [val]  if typeof val is "number"
-      val
-
-    boolean: (val) ->
-      if val is 0
-        return false
-      else return true  if val is 1
-      val
-
-    booleanArray: (val) ->
-      if val is 0
-        return [false]
-      else return [true]  if val is 1
-      val
-
-  contextAdjust: (context) ->
-    context.atts.max = context.max  if typeof context.atts.max is "undefined" and typeof context.max is "number"
-    context.atts.min = context.min  if typeof context.atts.min is "undefined" and typeof context.min is "number"
-    context.atts.step = "0.01"  if typeof context.atts.step is "undefined" and context.decimal
-    context
-###
-
-
 Template.OafCustomNumber.events
   "mousedown .side": (event, template) ->
+    return unless event.button is 0
     self = this
     target = $(event.target)
     unless target.hasClass 'side'

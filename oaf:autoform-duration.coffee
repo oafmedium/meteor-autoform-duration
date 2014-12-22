@@ -5,7 +5,7 @@ AutoForm.addInputType 'oaf-duration',
 
 
 Template.OafDuration.events
-  'change .oafDuration input': (event, template) ->
+  'change .oafDuration input:not([type=hidden])': (event, template) ->
     target = $(event.target).closest('.oafDuration')
 
     hours = target.find('input[name=oafHours]')
@@ -21,9 +21,13 @@ Template.OafDuration.events
 
     minutes.val 0 if minutes.val() < 0
     hours.val 0 if hours.val() < 0
-    target.find('input[type=hidden]').val JSON.stringify
+
+    $input = target.find('input[type=hidden]')
+
+    $input.val JSON.stringify
       hours: AutoForm.Utility.stringToNumber hours.val()
       minutes: AutoForm.Utility.stringToNumber minutes.val()
+    $input.trigger 'change'
 
 Template.OafDuration.helpers
   optionsHours: ->
@@ -35,6 +39,5 @@ Template.OafDuration.rendered = ->
   if @data.value is ''
     $(@find('input[name=oafHours]')).val 0
     $(@find('input[name=oafMinutes]')).val 0
-    $(@find('input')).trigger 'change'
 
 Template.OafDuration.destroyed = ->
